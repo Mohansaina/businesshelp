@@ -1,0 +1,19 @@
+# Commands to Push to GitHub
+
+Run these commands in your terminal from the project directory:
+
+1. First, create a new repository on GitHub:
+   - Go to https://github.com/new
+   - Name it "businesshelp" (or any name you prefer)
+   - Make sure to NOT initialize with a README
+   - Click "Create repository"
+
+2. Then run these commands in your terminal:
+   cd c:\Users\svssw\Downloads\akkamarigae
+   git remote add origin https://github.com/YOUR_GITHUB_USERNAME/businesshelp.git
+   git branch -M main
+   git push -u origin main
+
+Replace YOUR_GITHUB_USERNAME with your actual GitHub username.
+
+After running these commands, refresh your GitHub repository page to verify that all files have been uploaded.
