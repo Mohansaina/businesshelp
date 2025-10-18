@@ -17,8 +17,8 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-// Serve static files (this should come after API routes but before the catch-all route)
-app.use(express.static('public'));
+// Serve static files - this should come BEFORE API routes
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Initialize SQLite database
 const db = new sqlite3.Database('./database.db', (err) => {
