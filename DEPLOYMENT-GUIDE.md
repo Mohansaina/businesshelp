@@ -339,3 +339,94 @@ app.post('/api/create-checkout-session', authenticateToken, async (req, res) => 
 6. Monitor and iterate
 
 For any issues, please open an issue on the GitHub repository or contact the development team.
+
+# Deployment Guide
+
+This guide will help you deploy the AI Review & Reputation Tool to Render.
+
+## Prerequisites
+
+1. A GitHub account
+2. A Render account (free tier available)
+3. A Gmail account for email notifications (optional)
+4. An OpenAI API key for AI features (optional)
+
+## Deploying to Render
+
+### Step 1: Fork the Repository
+
+1. Go to your GitHub account
+2. Fork this repository to your account
+
+### Step 2: Create a Web Service on Render
+
+1. Go to [Render Dashboard](https://dashboard.render.com/)
+2. Click "New" and select "Web Service"
+3. Connect your GitHub account when prompted
+4. Select your forked repository
+5. Configure the following settings:
+   - **Name**: ai-review-tool (or any name you prefer)
+   - **Region**: Choose the region closest to you
+   - **Branch**: main
+   - **Root Directory**: Leave empty
+   - **Environment**: Node
+   - **Build Command**: `npm install`
+   - **Start Command**: `npm start`
+   - **Plan**: Free (or select a paid plan for production)
+
+### Step 3: Configure Environment Variables
+
+In the "Environment Variables" section, add the following variables:
+
+1. `JWT_SECRET` - Generate a strong secret key for JWT token signing
+2. `EMAIL_USER` - Your Gmail address (for sending welcome emails)
+3. `EMAIL_PASS` - Your Gmail app password (not your regular password)
+4. `OPENAI_API_KEY` - Your OpenAI API key (optional, for AI features)
+
+### Step 4: Deploy
+
+1. Click "Create Web Service"
+2. Render will automatically start building and deploying your application
+3. Wait for the deployment to complete (this may take a few minutes)
+4. Once deployed, you'll see your application URL in the Render dashboard
+
+### Step 5: Configure Gmail for Email Notifications (Optional)
+
+To enable email notifications:
+
+1. Enable 2-factor authentication on your Gmail account
+2. Generate an app password:
+   - Go to your Google Account settings
+   - Navigate to Security
+   - Under "Signing in to Google", select "App passwords"
+   - Generate a new app password for "Mail"
+   - Use this app password as your `EMAIL_PASS` environment variable
+
+### Step 6: Configure OpenAI for AI Features (Optional)
+
+To enable AI features:
+
+1. Sign up for an OpenAI account at [platform.openai.com](https://platform.openai.com/)
+2. Create an API key
+3. Add the API key as the `OPENAI_API_KEY` environment variable in Render
+
+## Auto-Deployment
+
+This application is configured for auto-deployment. Any changes pushed to the main branch of your GitHub repository will automatically trigger a new deployment on Render.
+
+## Health Checks
+
+Render will automatically check the `/health` endpoint to ensure your application is running properly.
+
+## Troubleshooting
+
+### Common Issues
+
+1. **Deployment fails**: Check the build logs in Render for specific error messages
+2. **Application crashes**: Check the application logs in Render
+3. **Emails not sending**: Verify your Gmail credentials and app password
+4. **AI features not working**: Ensure your OpenAI API key is valid and has sufficient credits
+
+### Support
+
+For additional help, please open an issue on the GitHub repository.
