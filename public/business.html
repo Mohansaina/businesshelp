@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Setup - AI Review & Reputation Tool</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>ReviewAI</h2>
+            </div>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li class="active"><a href="business.html">Business Setup</a></li>
+                    <li><a href="reviews.html">Review Requests</a></li>
+                    <li><a href="analytics.html">Analytics</a></li>
+                    <li><a href="settings.html">Settings</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="dashboard-header">
+                <h1>Business Setup</h1>
+                <div class="user-actions">
+                    <button class="btn btn-outline">Help Center</button>
+                    <div class="user-profile">
+                        <span>John Doe</span>
+                        <div class="avatar">JD</div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Business Setup Form -->
+            <section class="setup-section">
+                <div class="container">
+                    <div class="setup-card">
+                        <div class="setup-header">
+                            <h2>Business Information</h2>
+                            <p>Enter your business details to connect with review platforms</p>
+                        </div>
+                        
+                        <form id="businessForm" class="setup-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="businessName">Business Name *</label>
+                                    <input type="text" id="businessName" name="businessName" required placeholder="Enter your business name">
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="phone">Phone Number *</label>
+                                    <input type="tel" id="phone" name="phone" required placeholder="(123) 456-7890">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="email">Business Email</label>
+                                    <input type="email" id="email" name="email" placeholder="contact@yourbusiness.com">
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="address">Full Address *</label>
+                                    <input type="text" id="address" name="address" required placeholder="123 Main Street, City, State, ZIP">
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="googleId">Google Business Profile ID</label>
+                                    <input type="text" id="googleId" name="googleId" placeholder="Enter your Google Business Profile ID">
+                                    <small class="form-help">You can find this in your Google Business Profile URL</small>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="facebookId">Facebook Page ID</label>
+                                    <input type="text" id="facebookId" name="facebookId" placeholder="Enter your Facebook Page ID">
+                                    <small class="form-help">You can find this in your Facebook Page settings</small>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="industry">Industry Category</label>
+                                    <select id="industry" name="industry">
+                                        <option value="">Select your industry</option>
+                                        <option value="restaurant">Restaurant & Food Service</option>
+                                        <option value="retail">Retail & Shopping</option>
+                                        <option value="health">Health & Medical</option>
+                                        <option value="professional">Professional Services</option>
+                                        <option value="automotive">Automotive</option>
+                                        <option value="hotel">Hospitality & Travel</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-outline">Cancel</button>
+                                <button type="submit" class="btn btn-primary">Save Business Information</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <!-- Platform Connections -->
+                    <div class="setup-card">
+                        <div class="setup-header">
+                            <h2>Connect Review Platforms</h2>
+                            <p>Connect your business profiles to automatically collect and respond to reviews</p>
+                        </div>
+                        
+                        <div class="platforms-grid">
+                            <div class="platform-card">
+                                <div class="platform-icon">🔍</div>
+                                <h3>Google Reviews</h3>
+                                <p>Connect your Google Business Profile</p>
+                                <button class="btn btn-outline">Connect</button>
+                            </div>
+                            
+                            <div class="platform-card">
+                                <div class="platform-icon">📘</div>
+                                <h3>Facebook Reviews</h3>
+                                <p>Connect your Facebook Page</p>
+                                <button class="btn btn-outline">Connect</button>
+                            </div>
+                            
+                            <div class="platform-card">
+                                <div class="platform-icon">⭐</div>
+                                <h3>Yelp Reviews</h3>
+                                <p>Connect your Yelp Business Page</p>
+                                <button class="btn btn-outline">Connect</button>
+                            </div>
+                            
+                            <div class="platform-card">
+                                <div class="platform-icon">🏠</div>
+                                <h3>Apple Maps</h3>
+                                <p>Connect your Apple Business Connect</p>
+                                <button class="btn btn-outline">Connect</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="js/business.js"></script>
+</body>
+</html>

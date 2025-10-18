@@ -1,0 +1,44 @@
+{
+  "hosting": {
+    "public": "public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  },
+  "functions": {
+    "runtime": "nodejs18",
+    "source": "functions"
+  },
+  "emulators": {
+    "functions": {
+      "port": 9001
+    },
+    "hosting": {
+      "port": 9002
+    },
+    "ui": {
+      "enabled": true,
+      "port": 9003
+    },
+    "hub": {
+      "port": 9004
+    },
+    "logging": {
+      "port": 9005
+    },
+    "eventarc": {
+      "port": 9006
+    },
+    "tasks": {
+      "port": 9007
+    }
+  }
+}

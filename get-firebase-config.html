@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Firebase Configuration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .step {
+            margin: 20px 0;
+            padding: 15px;
+            border-left: 4px solid #007bff;
+            background-color: #f8f9fa;
+        }
+        .code-block {
+            background-color: #f1f1f1;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .instructions {
+            background-color: #d1ecf1;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Get Your Firebase Configuration</h1>
+        
+        <div class="instructions">
+            <p><strong>Follow these steps to get your Firebase configuration for the project "thebusinesshelper-baccf"</strong></p>
+        </div>
+        
+        <div class="step">
+            <h3>Step 1: Go to Firebase Console</h3>
+            <p>Visit <a href="https://console.firebase.google.com/" target="_blank">Firebase Console</a> and sign in with your Google account.</p>
+        </div>
+        
+        <div class="step">
+            <h3>Step 2: Select Your Project</h3>
+            <p>Select the project named <span class="highlight">thebusinesshelper-baccf</span> from the project list.</p>
+        </div>
+        
+        <div class="step">
+            <h3>Step 3: Access Project Settings</h3>
+            <p>Click the gear icon ⚙️ next to "Project Overview" in the left sidebar, then select "Project settings".</p>
+        </div>
+        
+        <div class="step">
+            <h3>Step 4: Find Your App Configuration</h3>
+            <p>In the "General" tab, scroll down to the "Your apps" section. If you don't see a web app (</> icon), you'll need to register one:</p>
+            <ol>
+                <li>Click the "</>" icon to add a web app</li>
+                <li>Enter "ReviewAI Web" as the app nickname</li>
+                <li>Check "Also set up Firebase Hosting" (optional)</li>
+                <li>Click "Register app"</li>
+                <li>Copy the configuration code shown</li>
+            </ol>
+        </div>
+        
+        <div class="step">
+            <h3>Step 5: Configuration Code Example</h3>
+            <p>Your configuration will look similar to this:</p>
+            <div class="code-block">const firebaseConfig = {
+  apiKey: "AIzaSyB0ufR1Rr1bZJw5qJrX1bZJw5qJrX1bZJw5",
+  authDomain: "thebusinesshelper-baccf.firebaseapp.com",
+  projectId: "thebusinesshelper-baccf",
+  storageBucket: "thebusinesshelper-baccf.appspot.com",
+  messagingSenderId: "123456789012",
+  appId: "1:123456789012:web:abcdefghijklmnopqrstuvwxyz",
+  measurementId: "G-ABC123DEF"
+};</div>
+        </div>
+        
+        <div class="step">
+            <h3>Step 6: Update Your Configuration File</h3>
+            <p>Open <span class="highlight">public/js/firebase-config.js</span> in your code editor and replace the placeholder values with your actual configuration.</p>
+        </div>
+        
+        <div class="step">
+            <h3>Step 7: Enable Required Services</h3>
+            <p>In the Firebase Console, enable these services:</p>
+            <ul>
+                <li><strong>Authentication</strong>: Enable Email/Password, Google, and GitHub sign-in methods</li>
+                <li><strong>Firestore Database</strong>: Create database in "Test mode"</li>
+            </ul>
+        </div>
+        
+        <div class="step">
+            <h3>Step 8: Test Your Configuration</h3>
+            <p>Start your development server and test the authentication:</p>
+            <div class="code-block">npm start</div>
+            <p>Then visit <a href="http://localhost:3000" target="_blank">http://localhost:3000</a> and try signing up or logging in.</p>
+        </div>
+        
+        <div style="text-align: center; margin-top: 30px;">
+            <button onclick="window.open('https://console.firebase.google.com/project/thebusinesshelper-baccf/settings/general', '_blank')">Open Firebase Project Settings</button>
+            <button onclick="window.open('https://console.firebase.google.com/project/thebusinesshelper-baccf/authentication/providers', '_blank')">Open Authentication Settings</button>
+            <button onclick="window.open('https://console.firebase.google.com/project/thebusinesshelper-baccf/firestore', '_blank')">Open Firestore Database</button>
+        </div>
+    </div>
+</body>
+</html>

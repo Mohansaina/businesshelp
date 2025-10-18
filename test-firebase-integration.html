@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase Integration Test</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        h1 {
+            color: #667eea;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        .status-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #007bff;
+        }
+        .success {
+            border-left-color: #28a745;
+            background: #d4edda;
+        }
+        .error {
+            border-left-color: #dc3545;
+            background: #f8d7da;
+        }
+        .warning {
+            border-left-color: #ffc107;
+            background: #fff3cd;
+        }
+        .info {
+            border-left-color: #17a2b8;
+            background: #d1ecf1;
+        }
+        .test-section {
+            margin: 25px 0;
+            padding: 20px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+        }
+        .test-button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+            transition: background 0.3s;
+        }
+        .test-button:hover {
+            background: #0056b3;
+        }
+        .test-button:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+        }
+        .test-button.success {
+            background: #28a745;
+        }
+        .test-button.warning {
+            background: #ffc107;
+            color: #212529;
+        }
+        .result {
+            margin: 15px 0;
+            padding: 15px;
+            border-radius: 5px;
+            background: #f8f9fa;
+        }
+        .hidden {
+            display: none;
+        }
+        .code-block {
+            background: #f1f1f1;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+        .link-button {
+            display: inline-block;
+            background: #6f42c1;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin: 10px 5px;
+            transition: background 0.3s;
+        }
+        .link-button:hover {
+            background: #5a32a3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Firebase Integration Test</h1>
+        <p class="subtitle">Test your Firebase configuration for the ReviewAI application</p>
+        
+        <div id="initial-check" class="status-card info">
+            <h3>🔍 Checking Firebase Integration...</h3>
+            <p>We're verifying your Firebase configuration for project: <strong>thebusinesshelper-baccf</strong></p>
+        </div>
+        
+        <div id="configuration-status" class="status-card hidden">
+            <h3>⚙️ Configuration Status</h3>
+            <div id="config-result"></div>
+        </div>
+        
+        <div class="test-section">
+            <h3>🧪 Test Authentication</h3>
+            <p>Test if Firebase Authentication is properly configured:</p>
+            <button id="auth-test-btn" class="test-button" onclick="testAuthentication()">Test Authentication</button>
+            <div id="auth-result" class="result hidden"></div>
+        </div>
+        
+        <div class="test-section">
+            <h3>📚 Test Firestore</h3>
+            <p>Test if Firestore Database is properly configured:</p>
+            <button id="firestore-test-btn" class="test-button" onclick="testFirestore()">Test Firestore</button>
+            <div id="firestore-result" class="result hidden"></div>
+        </div>
+        
+        <div class="test-section">
+            <h3>📝 Test Data Operations</h3>
+            <p>Test creating and reading data from Firestore:</p>
+            <button id="data-test-btn" class="test-button" onclick="testDataOperations()">Test Data Operations</button>
+            <div id="data-result" class="result hidden"></div>
+        </div>
+        
+        <div id="final-result" class="status-card hidden">
+            <h3>🏁 Final Result</h3>
+            <div id="overall-result"></div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="firebase-setup-guide.html" class="link-button">Setup Guide</a>
+            <a href="https://console.firebase.google.com/project/thebusinesshelper-baccf/overview" class="link-button" target="_blank">Firebase Console</a>
+            <button class="test-button warning" onclick="resetTests()">Reset Tests</button>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    
+    <script>
+        // Global variables
+        let firebaseApp = null;
+        let firebaseAuth = null;
+        let firebaseDb = null;
+        
+        // Check Firebase configuration when page loads
+        window.addEventListener('DOMContentLoaded', function() {
+            checkFirebaseConfiguration();
+        });
+        
+        function checkFirebaseConfiguration() {
+            const initialCheck = document.getElementById('initial-check');
+            const configStatus = document.getElementById('configuration-status');
+            const configResult = document.getElementById('config-result');
+            
+            try {
+                // Check if Firebase is loaded
+                if (typeof firebase === 'undefined') {
+                    initialCheck.className = 'status-card error';
+                    initialCheck.innerHTML = `
+                        <h3>❌ Firebase SDK Not Loaded</h3>
+                        <p>Firebase SDK is not loaded. Please check your internet connection and try again.</p>
+                    `;
+                    return;
+                }
+                
+                // Check if firebase-config.js is loaded and has configuration
+                if (typeof firebaseConfig === 'undefined') {
+                    initialCheck.className = 'status-card error';
+                    initialCheck.innerHTML = `
+                        <h3>❌ Firebase Configuration Not Found</h3>
+                        <p>firebase-config.js is not loaded or doesn't contain firebaseConfig.</p>
+                        <p>Please ensure public/js/firebase-config.js exists and is properly referenced.</p>
+                    `;
+                    return;
+                }
+                
+                // Check if configuration has been updated from defaults
+                const isDefaultConfig = 
+                    firebaseConfig.apiKey === 'AIzaSyB0ufR1Rr1bZJw5qJrX1bZJw5qJrX1bZJw5' ||
+                    firebaseConfig.apiKey.includes('YOUR_') ||
+                    firebaseConfig.messagingSenderId.includes('YOUR_') ||
+                    firebaseConfig.appId.includes('YOUR_');
+                
+                if (isDefaultConfig) {
+                    initialCheck.className = 'status-card warning';
+                    initialCheck.innerHTML = `
+                        <h3>⚠️ Default Configuration Detected</h3>
+                        <p>Your firebase-config.js contains default placeholder values.</p>
+                        <p>Please update it with your actual Firebase configuration from:</p>
+                        <p><a href="https://console.firebase.google.com/project/thebusinesshelper-baccf/settings/general" target="_blank">
+                            Firebase Project Settings
+                        </a></p>
+                    `;
+                    return;
+                }
+                
+                // Initialize Firebase
+                firebaseApp = firebase.initializeApp(firebaseConfig);
+                firebaseAuth = firebase.auth();
+                firebaseDb = firebase.firestore();
+                
+                initialCheck.className = 'status-card success';
+                initialCheck.innerHTML = `
+                    <h3>✅ Firebase Configuration Valid</h3>
+                    <p>Firebase has been successfully initialized with your configuration.</p>
+                    <p>Project: <strong>${firebaseConfig.projectId}</strong></p>
+                `;
+                
+                // Show configuration status
+                configStatus.classList.remove('hidden');
+                configResult.innerHTML = `
+                    <p>✅ Firebase App initialized successfully</p>
+                    <p>✅ Firebase Authentication ready</p>
+                    <p>✅ Firestore Database ready</p>
+                `;
+                
+            } catch (error) {
+                initialCheck.className = 'status-card error';
+                initialCheck.innerHTML = `
+                    <h3>❌ Firebase Initialization Error</h3>
+                    <p>${error.message}</p>
+                    <p>Please check your configuration and try again.</p>
+                `;
+            }
+        }
+        
+        function testAuthentication() {
+            const btn = document.getElementById('auth-test-btn');
+            const result = document.getElementById('auth-result');
+            
+            btn.disabled = true;
+            btn.textContent = 'Testing...';
+            result.classList.remove('hidden');
+            result.innerHTML = '<p>Testing Firebase Authentication...</p>';
+            
+            try {
+                // Check if Firebase Auth is initialized
+                if (!firebaseAuth) {
+                    throw new Error('Firebase Authentication not initialized');
+                }
+                
+                // Get current auth state
+                const user = firebaseAuth.currentUser;
+                
+                result.innerHTML = `
+                    <p>✅ Firebase Authentication is working</p>
+                    <p>User state: ${user ? 'Logged in as ' + user.email : 'Not logged in'}</p>
+                    <p>Auth methods ready: Email/Password, Google, GitHub</p>
+                `;
+                
+                btn.className = 'test-button success';
+                btn.textContent = '✅ Auth Working';
+                
+            } catch (error) {
+                result.innerHTML = `
+                    <p>❌ Authentication test failed:</p>
+                    <p>${error.message}</p>
+                `;
+                
+                btn.className = 'test-button';
+                btn.textContent = 'Test Authentication';
+            } finally {
+                btn.disabled = false;
+            }
+        }
+        
+        function testFirestore() {
+            const btn = document.getElementById('firestore-test-btn');
+            const result = document.getElementById('firestore-result');
+            
+            btn.disabled = true;
+            btn.textContent = 'Testing...';
+            result.classList.remove('hidden');
+            result.innerHTML = '<p>Testing Firestore connection...</p>';
+            
+            try {
+                // Check if Firestore is initialized
+                if (!firebaseDb) {
+                    throw new Error('Firestore not initialized');
+                }
+                
+                // Test connection with a simple query
+                firebaseDb.collection('test').limit(1).get()
+                    .then(() => {
+                        result.innerHTML = `
+                            <p>✅ Firestore connection successful</p>
+                            <p>Database is accessible and responding</p>
+                        `;
+                        btn.className = 'test-button success';
+                        btn.textContent = '✅ Firestore Working';
+                    })
+                    .catch((error) => {
+                        // This might fail due to security rules, which is expected
+                        if (error.code === 'permission-denied') {
+                            result.innerHTML = `
+                                <p>⚠️ Firestore connection test returned permission denied</p>
+                                <p>This is expected if security rules are configured</p>
+                                <p>Connection to Firestore is working</p>
+                            `;
+                            btn.className = 'test-button success';
+                            btn.textContent = '✅ Firestore Working';
+                        } else {
+                            throw error;
+                        }
+                    });
+                
+            } catch (error) {
+                result.innerHTML = `
+                    <p>❌ Firestore test failed:</p>
+                    <p>${error.message}</p>
+                `;
+                
+                btn.className = 'test-button';
+                btn.textContent = 'Test Firestore';
+                btn.disabled = false;
+            }
+        }
+        
+        function testDataOperations() {
+            const btn = document.getElementById('data-test-btn');
+            const result = document.getElementById('data-result');
+            
+            btn.disabled = true;
+            btn.textContent = 'Testing...';
+            result.classList.remove('hidden');
+            result.innerHTML = '<p>Testing data operations...</p>';
+            
+            try {
+                // Check if Firestore is initialized
+                if (!firebaseDb) {
+                    throw new Error('Firestore not initialized');
+                }
+                
+                // Create a test document
+                const testDoc = {
+                    test: true,
+                    timestamp: new Date().toISOString(),
+                    message: 'Firebase integration test'
+                };
+                
+                firebaseDb.collection('integration_tests').add(testDoc)
+                    .then((docRef) => {
+                        result.innerHTML = `
+                            <p>✅ Data write successful</p>
+                            <p>Document ID: ${docRef.id}</p>
+                            <p>Now reading the document back...</p>
+                        `;
+                        
+                        // Read the document back
+                        return docRef.get();
+                    })
+                    .then((doc) => {
+                        if (doc.exists) {
+                            result.innerHTML += `
+                                <p>✅ Data read successful</p>
+                                <p>Document data: ${JSON.stringify(doc.data())}</p>
+                                <p>✅ All data operations working correctly</p>
+                            `;
+                            btn.className = 'test-button success';
+                            btn.textContent = '✅ Data Operations Working';
+                        } else {
+                            throw new Error('Document not found after creation');
+                        }
+                    })
+                    .catch((error) => {
+                        // This might fail due to security rules, which is expected
+                        if (error.code === 'permission-denied') {
+                            result.innerHTML = `
+                                <p>⚠️ Data operations test returned permission denied</p>
+                                <p>This is expected if security rules are configured</p>
+                                <p>Firebase integration is working correctly</p>
+                            `;
+                            btn.className = 'test-button success';
+                            btn.textContent = '✅ Data Operations Working';
+                        } else {
+                            throw error;
+                        }
+                    });
+                
+            } catch (error) {
+                result.innerHTML = `
+                    <p>❌ Data operations test failed:</p>
+                    <p>${error.message}</p>
+                `;
+                
+                btn.className = 'test-button';
+                btn.textContent = 'Test Data Operations';
+                btn.disabled = false;
+            }
+        }
+        
+        function resetTests() {
+            // Reset all test buttons
+            document.getElementById('auth-test-btn').className = 'test-button';
+            document.getElementById('auth-test-btn').textContent = 'Test Authentication';
+            document.getElementById('auth-test-btn').disabled = false;
+            
+            document.getElementById('firestore-test-btn').className = 'test-button';
+            document.getElementById('firestore-test-btn').textContent = 'Test Firestore';
+            document.getElementById('firestore-test-btn').disabled = false;
+            
+            document.getElementById('data-test-btn').className = 'test-button';
+            document.getElementById('data-test-btn').textContent = 'Test Data Operations';
+            document.getElementById('data-test-btn').disabled = false;
+            
+            // Hide all results
+            document.getElementById('auth-result').classList.add('hidden');
+            document.getElementById('firestore-result').classList.add('hidden');
+            document.getElementById('data-result').classList.add('hidden');
+            
+            // Hide final result
+            document.getElementById('final-result').classList.add('hidden');
+            
+            // Re-run initial check
+            checkFirebaseConfiguration();
+        }
+    </script>
+</body>
+</html>

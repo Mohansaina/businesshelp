@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase Test</title>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+</head>
+<body>
+    <h1>Firebase Integration Test</h1>
+    <div id="status">Checking Firebase integration...</div>
+    <div id="result"></div>
+    
+    <script>
+        // Firebase configuration - REPLACE THESE VALUES WITH YOUR ACTUAL FIREBASE CONFIG
+        const firebaseConfig = {
+          apiKey: "YOUR_ACTUAL_API_KEY",
+          authDomain: "your-project.firebaseapp.com",
+          projectId: "your-project-id",
+          storageBucket: "your-project.appspot.com",
+          messagingSenderId: "123456789",
+          appId: "1:123456789:web:abcdef123456",
+          measurementId: "G-ABCDEF1234"
+        };
+        
+        try {
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+            
+            // Initialize Firebase Authentication and Firestore
+            const auth = firebase.auth();
+            const db = firebase.firestore();
+            
+            document.getElementById('status').innerHTML = '<p style="color: green;">Firebase initialized successfully!</p>';
+            document.getElementById('result').innerHTML = '<p>Firebase Auth and Firestore are ready to use.</p>';
+            
+            console.log('Firebase initialized successfully');
+        } catch (error) {
+            document.getElementById('status').innerHTML = '<p style="color: red;">Firebase initialization failed:</p>';
+            document.getElementById('result').innerHTML = '<p>' + error.message + '</p>';
+            console.error('Firebase initialization error:', error);
+        }
+    </script>
+</body>
+</html>

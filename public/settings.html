@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - AI Review & Reputation Tool</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>ReviewAI</h2>
+            </div>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="business.html">Business Setup</a></li>
+                    <li><a href="reviews.html">Review Requests</a></li>
+                    <li><a href="analytics.html">Analytics</a></li>
+                    <li class="active"><a href="settings.html">Settings</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="dashboard-header">
+                <h1>Account Settings</h1>
+                <div class="user-actions">
+                    <button class="btn btn-outline">Help Center</button>
+                    <div class="user-profile">
+                        <span>John Doe</span>
+                        <div class="avatar">JD</div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Settings Sections -->
+            <section class="settings-section">
+                <div class="container">
+                    <div class="settings-grid">
+                        <!-- Profile Settings -->
+                        <div class="setup-card">
+                            <div class="setup-header">
+                                <h2>Profile Information</h2>
+                                <p>Update your personal account details</p>
+                            </div>
+                            
+                            <form id="profileForm" class="setup-form">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="fullName">Full Name</label>
+                                        <input type="text" id="fullName" name="fullName" value="John Doe">
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="email">Email Address</label>
+                                        <input type="email" id="email" name="email" value="john.doe@example.com">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="phone">Phone Number</label>
+                                        <input type="tel" id="phone" name="phone" value="(555) 123-4567">
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="timezone">Timezone</label>
+                                        <select id="timezone" name="timezone">
+                                            <option value="EST">Eastern Time (EST)</option>
+                                            <option value="CST">Central Time (CST)</option>
+                                            <option value="MST" selected>Mountain Time (MST)</option>
+                                            <option value="PST">Pacific Time (PST)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-actions">
+                                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                                </div>
+                            </form>
+                        </div>
+                        
+                        <!-- Notification Settings -->
+                        <div class="setup-card">
+                            <div class="setup-header">
+                                <h2>Notification Preferences</h2>
+                                <p>Choose how you want to be notified</p>
+                            </div>
+                            
+                            <div class="notification-settings">
+                                <div class="setting-item">
+                                    <div class="setting-info">
+                                        <h3>New Review Notifications</h3>
+                                        <p>Get notified when you receive a new review</p>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                
+                                <div class="setting-item">
+                                    <div class="setting-info">
+                                        <h3>AI Reply Suggestions</h3>
+                                        <p>Get notified when AI generates a reply suggestion</p>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                
+                                <div class="setting-item">
+                                    <div class="setting-info">
+                                        <h3>Weekly Reports</h3>
+                                        <p>Receive weekly analytics reports</p>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                
+                                <div class="setting-item">
+                                    <div class="setting-info">
+                                        <h3>Marketing Emails</h3>
+                                        <p>Receive product updates and tips</p>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Security Settings -->
+                        <div class="setup-card">
+                            <div class="setup-header">
+                                <h2>Security</h2>
+                                <p>Manage your account security settings</p>
+                            </div>
+                            
+                            <div class="security-settings">
+                                <div class="setting-item">
+                                    <div class="setting-info">
+                                        <h3>Two-Factor Authentication</h3>
+                                        <p>Add an extra layer of security to your account</p>
+                                    </div>
+                                    <button class="btn btn-outline">Enable</button>
+                                </div>
+                                
+                                <div class="setting-item">
+                                    <div class="setting-info">
+                                        <h3>Change Password</h3>
+                                        <p>Update your account password</p>
+                                    </div>
+                                    <button class="btn btn-outline" id="changePasswordBtn">Change</button>
+                                </div>
+                                
+                                <div class="setting-item">
+                                    <div class="setting-info">
+                                        <h3>Active Sessions</h3>
+                                        <p>View and manage devices connected to your account</p>
+                                    </div>
+                                    <button class="btn btn-outline">View</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Subscription Settings -->
+                        <div class="setup-card">
+                            <div class="setup-header">
+                                <h2>Subscription Plan</h2>
+                                <p>Manage your subscription and billing information</p>
+                            </div>
+                            
+                            <div class="subscription-info">
+                                <div class="plan-details">
+                                    <h3>Pro Plan</h3>
+                                    <p class="plan-price">$29/month</p>
+                                    <p class="plan-desc">For growing businesses with up to 5 locations</p>
+                                    <div class="plan-features">
+                                        <ul>
+                                            <li>✓ Unlimited reviews</li>
+                                            <li>✓ AI sentiment analysis</li>
+                                            <li>✓ Auto-reply suggestions</li>
+                                            <li>✓ Email & WhatsApp notifications</li>
+                                            <li>✓ Advanced analytics</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+                                <div class="plan-actions">
+                                    <button class="btn btn-primary">Upgrade to Agency</button>
+                                    <button class="btn btn-outline">Billing History</button>
+                                    <button class="btn btn-outline">Cancel Subscription</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="js/settings.js"></script>
+</body>
+</html>

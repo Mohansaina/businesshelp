@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Review & Reputation Tool - Boost Your Local Business</title>
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="hero">
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <h2>ReviewAI</h2>
+                </div>
+                <div class="nav-buttons">
+                    <button class="btn btn-outline" onclick="location.href='login.html'">Login</button>
+                    <button class="btn btn-primary" onclick="location.href='signup.html'">Sign Up</button>
+                </div>
+            </nav>
+            
+            <div class="hero-content">
+                <h1 class="hero-title">Supercharge Your Local Business Reputation</h1>
+                <p class="hero-description">AI-powered review management that analyzes customer sentiment, generates smart replies, and boosts your online presence automatically.</p>
+                <button class="btn btn-primary btn-large" onclick="location.href='signup.html'">Get Started Free</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Powerful Features for Local Businesses</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>AI Sentiment Analysis</h3>
+                    <p>Understand customer emotions with advanced AI that analyzes every review.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💬</div>
+                    <h3>Smart Auto-Replies</h3>
+                    <p>Generate personalized responses to reviews in seconds with AI assistance.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Real-Time Analytics</h3>
+                    <p>Track your reputation metrics with intuitive dashboards and reports.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔔</div>
+                    <h3>Automated Notifications</h3>
+                    <p>Never miss a review with email and WhatsApp alerts.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">Trusted by Local Business Owners</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"ReviewAI increased our response rate to customer reviews by 300% and helped us improve our Google rating from 3.2 to 4.7 in just 3 months!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <h4>Sarah Johnson</h4>
+                        <p>Owner, Bella's Bakery</p>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"The AI sentiment analysis helped us identify service issues we didn't even know existed. Our customer satisfaction scores have never been higher."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <h4>Michael Torres</h4>
+                        <p>Manager, AutoCare Plus</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Transform Your Online Reputation?</h2>
+                <p>Join hundreds of local businesses boosting their visibility and customer engagement with AI-powered review management.</p>
+                <button class="btn btn-primary btn-large" onclick="location.href='signup.html'">Start Your Free Trial</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>ReviewAI</h3>
+                    <p>AI-Powered Reputation Management</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#">Terms</a>
+                    <a href="#">Privacy</a>
+                    <a href="#">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Firebase Configuration -->
+    <script src="js/firebase-config.js"></script>
+    <script>
+        // Check if user is already logged in and redirect to dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            firebase.auth().onAuthStateChanged(function(user) {
+                if (user) {
+                    // User is signed in, redirect to dashboard
+                    window.location.href = 'dashboard.html';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

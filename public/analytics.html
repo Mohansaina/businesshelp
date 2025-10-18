@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics - AI Review & Reputation Tool</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>ReviewAI</h2>
+            </div>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="business.html">Business Setup</a></li>
+                    <li><a href="reviews.html">Review Requests</a></li>
+                    <li class="active"><a href="analytics.html">Analytics</a></li>
+                    <li><a href="settings.html">Settings</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="dashboard-header">
+                <h1>Analytics & Reports</h1>
+                <div class="user-actions">
+                    <button class="btn btn-outline">Export Report</button>
+                    <div class="user-profile">
+                        <span>John Doe</span>
+                        <div class="avatar">JD</div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Date Range Selector -->
+            <section class="filters-section">
+                <div class="container">
+                    <div class="filters-bar">
+                        <div class="date-filters">
+                            <label>Date Range:</label>
+                            <select id="dateRange">
+                                <option>Last 7 Days</option>
+                                <option selected>Last 30 Days</option>
+                                <option>Last 90 Days</option>
+                                <option>Year to Date</option>
+                                <option>Custom Range</option>
+                            </select>
+                        </div>
+                        <div class="platform-filters">
+                            <label>Platform:</label>
+                            <select>
+                                <option>All Platforms</option>
+                                <option>Google</option>
+                                <option>Facebook</option>
+                                <option>Yelp</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Key Metrics -->
+            <section class="stats-section">
+                <div class="container">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <h3>Total Reviews</h3>
+                                <div class="stat-icon">📝</div>
+                            </div>
+                            <div class="stat-value">1,248</div>
+                            <div class="stat-change positive">+12% from last period</div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <h3>Average Rating</h3>
+                                <div class="stat-icon">⭐</div>
+                            </div>
+                            <div class="stat-value">4.7</div>
+                            <div class="stat-change positive">+0.3 from last period</div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <h3>Response Rate</h3>
+                                <div class="stat-icon">💬</div>
+                            </div>
+                            <div class="stat-value">84%</div>
+                            <div class="stat-change positive">+8% from last period</div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <h3>Sentiment Score</h3>
+                                <div class="stat-icon">😊</div>
+                            </div>
+                            <div class="stat-value">8.2/10</div>
+                            <div class="stat-change negative">-0.4 from last period</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Charts Section -->
+            <section class="charts-section">
+                <div class="container">
+                    <div class="analysis-grid">
+                        <div class="analysis-card">
+                            <div class="chart-header">
+                                <h3>Reviews Over Time</h3>
+                                <div class="chart-actions">
+                                    <button class="btn btn-outline btn-small">Weekly</button>
+                                    <button class="btn btn-primary btn-small">Monthly</button>
+                                </div>
+                            </div>
+                            <div class="chart-container">
+                                <div class="bar-chart">
+                                    <div class="chart-bar-container">
+                                        <div class="chart-bar" style="height: 70%;">
+                                            <span class="bar-value">142</span>
+                                            <span class="bar-label">Jan</span>
+                                        </div>
+                                        <div class="chart-bar" style="height: 85%;">
+                                            <span class="bar-value">173</span>
+                                            <span class="bar-label">Feb</span>
+                                        </div>
+                                        <div class="chart-bar" style="height: 60%;">
+                                            <span class="bar-value">122</span>
+                                            <span class="bar-label">Mar</span>
+                                        </div>
+                                        <div class="chart-bar" style="height: 90%;">
+                                            <span class="bar-value">184</span>
+                                            <span class="bar-label">Apr</span>
+                                        </div>
+                                        <div class="chart-bar" style="height: 75%;">
+                                            <span class="bar-value">151</span>
+                                            <span class="bar-label">May</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="analysis-card">
+                            <div class="chart-header">
+                                <h3>Sentiment Distribution</h3>
+                            </div>
+                            <div class="chart-container">
+                                <div class="pie-chart">
+                                    <div class="pie-segment positive" style="--percentage: 70;">
+                                        <span>Positive (70%)</span>
+                                    </div>
+                                    <div class="pie-segment neutral" style="--percentage: 20;">
+                                        <span>Neutral (20%)</span>
+                                    </div>
+                                    <div class="pie-segment negative" style="--percentage: 10;">
+                                        <span>Negative (10%)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Detailed Analytics -->
+            <section class="detailed-analytics">
+                <div class="container">
+                    <div class="setup-card">
+                        <div class="setup-header">
+                            <h2>Detailed Analytics</h2>
+                            <p>Deep insights into your review performance and customer sentiment</p>
+                        </div>
+                        
+                        <div class="analytics-grid">
+                            <div class="analytics-card">
+                                <h3>Top Performing Locations</h3>
+                                <div class="location-list">
+                                    <div class="location-item">
+                                        <span>Main Street Branch</span>
+                                        <span class="rating">⭐ 4.8</span>
+                                        <span class="count">426 reviews</span>
+                                    </div>
+                                    <div class="location-item">
+                                        <span>Downtown Plaza</span>
+                                        <span class="rating">⭐ 4.6</span>
+                                        <span class="count">312 reviews</span>
+                                    </div>
+                                    <div class="location-item">
+                                        <span>Airport Location</span>
+                                        <span class="rating">⭐ 4.4</span>
+                                        <span class="count">287 reviews</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="analytics-card">
+                                <h3>Common Keywords</h3>
+                                <div class="keywords-list">
+                                    <div class="keyword-item">
+                                        <span class="keyword">service</span>
+                                        <span class="count">245 mentions</span>
+                                    </div>
+                                    <div class="keyword-item">
+                                        <span class="keyword">quality</span>
+                                        <span class="count">198 mentions</span>
+                                    </div>
+                                    <div class="keyword-item">
+                                        <span class="keyword">staff</span>
+                                        <span class="count">176 mentions</span>
+                                    </div>
+                                    <div class="keyword-item">
+                                        <span class="keyword">price</span>
+                                        <span class="count">142 mentions</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="js/analytics.js"></script>
+</body>
+</html>

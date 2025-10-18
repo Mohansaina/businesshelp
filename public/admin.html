@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - AI Review & Reputation Tool</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>ReviewAI</h2>
+            </div>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="business.html">Business Setup</a></li>
+                    <li><a href="reviews.html">Review Requests</a></li>
+                    <li><a href="analytics.html">Analytics</a></li>
+                    <li><a href="orders.html">Orders</a></li>
+                    <li class="active"><a href="admin.html">Admin</a></li>
+                    <li><a href="settings.html">Settings</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="dashboard-header">
+                <h1>Admin Dashboard</h1>
+                <div class="user-actions">
+                    <button class="btn btn-outline" id="refreshData">Refresh</button>
+                    <div class="user-profile">
+                        <span id="userName">Loading...</span>
+                        <div class="avatar" id="userAvatar">JD</div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Admin Tabs -->
+            <div class="admin-tabs">
+                <button class="tab-button active" data-tab="users">Users</button>
+                <button class="tab-button" data-tab="orders">Orders</button>
+                <button class="tab-button" data-tab="analytics">Analytics</button>
+            </div>
+
+            <!-- Users Tab -->
+            <section id="users-tab" class="admin-tab-content active">
+                <div class="section-header">
+                    <h2>All Users</h2>
+                    <div class="search-box">
+                        <input type="text" id="userSearch" placeholder="Search users...">
+                        <button class="btn btn-primary">Search</button>
+                    </div>
+                </div>
+                
+                <div class="orders-table-container">
+                    <table class="orders-table">
+                        <thead>
+                            <tr>
+                                <th>User ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Created At</th>
+                                <th>Last Login</th>
+                                <th>Orders</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="usersTableBody">
+                            <!-- Users will be populated here -->
+                            <tr>
+                                <td colspan="7" class="no-orders">Loading users...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Orders Tab -->
+            <section id="orders-tab" class="admin-tab-content">
+                <div class="section-header">
+                    <h2>All Orders</h2>
+                    <div class="search-box">
+                        <input type="text" id="adminOrderSearch" placeholder="Search orders...">
+                        <button class="btn btn-primary">Search</button>
+                    </div>
+                </div>
+                
+                <div class="orders-table-container">
+                    <table class="orders-table">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>User</th>
+                                <th>Date</th>
+                                <th>Customer</th>
+                                <th>Service</th>
+                                <th>Status</th>
+                                <th>Amount</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminOrdersTableBody">
+                            <!-- Orders will be populated here -->
+                            <tr>
+                                <td colspan="8" class="no-orders">Loading orders...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Analytics Tab -->
+            <section id="analytics-tab" class="admin-tab-content">
+                <div class="section-header">
+                    <h2>System Analytics</h2>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <h3>Total Users</h3>
+                            <div class="stat-icon">👥</div>
+                        </div>
+                        <div class="stat-value" id="totalUsers">0</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <h3>Total Orders</h3>
+                            <div class="stat-icon">📋</div>
+                        </div>
+                        <div class="stat-value" id="totalOrders">0</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <h3>Revenue</h3>
+                            <div class="stat-icon">💰</div>
+                        </div>
+                        <div class="stat-value" id="totalRevenue">$0.00</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <h3>Avg. Order Value</h3>
+                            <div class="stat-icon">📊</div>
+                        </div>
+                        <div class="stat-value" id="avgOrderValue">$0.00</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Firebase Configuration -->
+    <script src="js/firebase-config.js"></script>
+    <script src="js/admin-firebase.js"></script>
+</body>
+</html>

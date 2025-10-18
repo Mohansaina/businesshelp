@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orders - AI Review & Reputation Tool</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>ReviewAI</h2>
+            </div>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="business.html">Business Setup</a></li>
+                    <li><a href="reviews.html">Review Requests</a></li>
+                    <li><a href="analytics.html">Analytics</a></li>
+                    <li class="active"><a href="orders.html">Orders</a></li>
+                    <li><a href="settings.html">Settings</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="dashboard-header">
+                <h1>Order Management</h1>
+                <div class="user-actions">
+                    <button class="btn btn-outline" id="newOrderBtn">New Order</button>
+                    <div class="user-profile">
+                        <span id="userName">Loading...</span>
+                        <div class="avatar" id="userAvatar">JD</div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Orders Section -->
+            <section class="orders-section">
+                <div class="section-header">
+                    <h2>Your Orders</h2>
+                    <div class="search-box">
+                        <input type="text" id="orderSearch" placeholder="Search orders...">
+                        <button class="btn btn-primary">Search</button>
+                    </div>
+                </div>
+                
+                <div class="orders-table-container">
+                    <table class="orders-table">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Date</th>
+                                <th>Customer</th>
+                                <th>Service</th>
+                                <th>Status</th>
+                                <th>Amount</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ordersTableBody">
+                            <!-- Orders will be populated here -->
+                            <tr>
+                                <td colspan="7" class="no-orders">Loading orders...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Order Modal -->
+    <div class="modal" id="orderModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Create New Order</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="orderForm">
+                    <div class="form-group">
+                        <label for="customerName">Customer Name</label>
+                        <input type="text" id="customerName" name="customerName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="serviceType">Service Type</label>
+                        <select id="serviceType" name="serviceType" required>
+                            <option value="">Select a service</option>
+                            <option value="review_monitoring">Review Monitoring</option>
+                            <option value="sentiment_analysis">Sentiment Analysis</option>
+                            <option value="auto_replies">Auto Replies</option>
+                            <option value="full_package">Full Package</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="orderAmount">Amount ($)</label>
+                        <input type="number" id="orderAmount" name="orderAmount" min="0" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="orderNotes">Notes</label>
+                        <textarea id="orderNotes" name="orderNotes" rows="3"></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline" id="cancelOrder">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Create Order</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase Configuration -->
+    <script src="js/firebase-config.js"></script>
+    <script src="js/orders-firebase.js"></script>
+</body>
+</html>

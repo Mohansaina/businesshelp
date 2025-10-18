@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - AI Review & Reputation Tool</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>ReviewAI</h2>
+            </div>
+            <nav class="nav-menu">
+                <ul>
+                    <li class="active"><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="business.html">Business Setup</a></li>
+                    <li><a href="reviews.html">Review Requests</a></li>
+                    <li><a href="analytics.html">Analytics</a></li>
+                    <li><a href="settings.html">Settings</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="dashboard-header">
+                <h1>Dashboard Overview</h1>
+                <div class="user-actions">
+                    <button class="btn btn-outline">Upgrade Plan</button>
+                    <div class="user-profile">
+                        <span id="userName">Loading...</span>
+                        <div class="avatar" id="userAvatar">JD</div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Stats Cards -->
+            <section class="stats-section">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <h3>Total Reviews</h3>
+                            <div class="stat-icon">📊</div>
+                        </div>
+                        <div class="stat-value" id="totalReviews">1,248</div>
+                        <div class="stat-change positive">+12% from last month</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <h3>Average Rating</h3>
+                            <div class="stat-icon">⭐</div>
+                        </div>
+                        <div class="stat-value" id="averageRating">4.7</div>
+                        <div class="stat-change positive">+0.3 from last month</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <h3>Customer Happiness</h3>
+                            <div class="stat-icon">😊</div>
+                        </div>
+                        <div class="stat-value" id="customerHappiness">89%</div>
+                        <div class="stat-change positive">+5% from last month</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <h3>Sentiment Score</h3>
+                            <div class="stat-icon">📈</div>
+                        </div>
+                        <div class="stat-value" id="sentimentScore">8.2/10</div>
+                        <div class="stat-change negative">-0.4 from last month</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- AI Analysis Section -->
+            <section class="analysis-section">
+                <div class="section-header">
+                    <h2>AI Review Analysis</h2>
+                    <button class="btn btn-outline">View All</button>
+                </div>
+                
+                <div class="analysis-grid">
+                    <div class="analysis-card">
+                        <h3>Recent Review Insights</h3>
+                        <div class="review-item">
+                            <div class="review-header">
+                                <span class="review-source">Google</span>
+                                <span class="review-rating">⭐⭐⭐⭐⭐</span>
+                            </div>
+                            <p class="review-text">"The service was exceptional! The staff went above and beyond to help me with my issue."</p>
+                            <div class="ai-insight">
+                                <strong>AI Analysis:</strong> Positive sentiment (0.92). Key topics: service quality, staff helpfulness.
+                            </div>
+                            <div class="suggested-reply">
+                                <strong>Suggested Reply:</strong> "Thank you for your kind words! We're thrilled to hear about your positive experience..."
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="analysis-card">
+                        <h3>Sentiment Overview</h3>
+                        <div class="sentiment-chart">
+                            <div class="chart-bar positive" style="height: 70%;">
+                                <span>Positive</span>
+                                <span>70%</span>
+                            </div>
+                            <div class="chart-bar neutral" style="height: 20%;">
+                                <span>Neutral</span>
+                                <span>20%</span>
+                            </div>
+                            <div class="chart-bar negative" style="height: 10%;">
+                                <span>Negative</span>
+                                <span>10%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Business Info -->
+            <section class="business-section">
+                <div class="section-header">
+                    <h2>Business Information</h2>
+                    <button class="btn btn-primary" onclick="location.href='business.html'">Edit Details</button>
+                </div>
+                
+                <div class="business-info">
+                    <div class="info-item">
+                        <label>Business Name</label>
+                        <p id="businessName">Loading...</p>
+                    </div>
+                    <div class="info-item">
+                        <label>Phone</label>
+                        <p id="businessPhone">Loading...</p>
+                    </div>
+                    <div class="info-item">
+                        <label>Location</label>
+                        <p id="businessAddress">Loading...</p>
+                    </div>
+                    <div class="info-item">
+                        <label>Google ID</label>
+                        <p id="googleId">Loading...</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Firebase Configuration -->
+    <script src="js/firebase-config.js"></script>
+    <script src="js/dashboard-firebase.js"></script>
+</body>
+</html>
