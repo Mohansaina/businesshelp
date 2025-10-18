@@ -69,7 +69,9 @@ This application offers two deployment options with different capabilities:
 
 The GitHub Pages deployment is automatically updated when changes are pushed to the `main` branch. Visit https://mohansaina.github.io/businesshelp/ to see the frontend demo.
 
-### Render Deployment
+### Render Deployment (One-Click)
+
+For Mohan Ruttala: Use the [Personal Deployment Guide](PERSONAL-DEPLOYMENT-GUIDE.md) for step-by-step instructions.
 
 1. Go to [Render Dashboard](https://dashboard.render.com/new?repo=https://github.com/Mohansaina/businesshelp)
 2. Connect your GitHub account when prompted
