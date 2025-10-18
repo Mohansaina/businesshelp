@@ -5,6 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page Not Found - AI Review & Reputation Tool</title>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        .error-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh;
+            padding: 2rem;
+        }
+        
+        .error-content {
+            text-align: center;
+            max-width: 600px;
+        }
+        
+        .error-content h1 {
+            font-size: 4rem;
+            color: #dc3545;
+            margin-bottom: 1rem;
+        }
+        
+        .error-content h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        
+        .error-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #666;
+        }
+        
+        .github-notice {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 0.375rem;
+            padding: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .btn-github {
+            background-color: #28a745;
+            border-color: #28a745;
+            color: white;
+            margin: 0.5rem;
+        }
+        
+        .btn-github:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+        }
+    </style>
 </head>
 <body>
     <div class="error-container">
@@ -12,11 +64,43 @@
             <h1>404</h1>
             <h2>Page Not Found</h2>
             <p>Sorry, the page you're looking for doesn't exist or has been moved.</p>
+            
+            <div class="github-notice">
+                <h3>GitHub Pages Demo</h3>
+                <p>You're viewing the static demo version of the AI Review & Reputation Tool. Some features require backend functionality.</p>
+                <button class="btn btn-github" onclick="window.location.href='/'">Go to Homepage</button>
+                <button class="btn btn-github" onclick="window.open('https://dashboard.render.com/new?repo=https://github.com/Mohansaina/businesshelp', '_blank')">Deploy to Render for Full Features</button>
+            </div>
+            
             <div class="error-actions">
                 <button class="btn btn-primary" onclick="window.location.href='/'">Go to Homepage</button>
                 <button class="btn btn-outline" onclick="window.history.back()">Go Back</button>
             </div>
         </div>
     </div>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>ReviewAI</h3>
+                    <p>AI-Powered Reputation Management</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#" onclick="showGithubNotice('terms')">Terms</a>
+                    <a href="#" onclick="showGithubNotice('privacy')">Privacy</a>
+                    <a href="#" onclick="showGithubNotice('contact')">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Show notice for actions that require backend
+        function showGithubNotice(action) {
+            alert("This is a static demo of the AI Review & Reputation Tool. The full application requires backend functionality that GitHub Pages cannot provide. To use the complete application, please deploy to a platform that supports server-side code like Render.");
+        }
+    </script>
 </body>
 </html>
