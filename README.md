@@ -48,27 +48,42 @@ To run the server in development mode with auto-restart:
 npm run dev
 ```
 
+## Deployment Options
+
+This application offers two deployment options with different capabilities:
+
+### GitHub Pages Deployment (Frontend Demo)
+- **URL**: https://mohansaina.github.io/businesshelp/
+- **Purpose**: Static frontend demo showcasing the user interface
+- **Features**: Visual design, navigation, responsive layout
+- **Limitations**: No backend functionality (authentication, database, AI features)
+
+### Render Deployment (Full Application)
+- **Purpose**: Complete application with all features
+- **Features**: User authentication, database, AI analysis, email notifications
+- **URL**: Will be provided after deployment
+
 ## Deployment
 
-This application can be deployed to any platform that supports Node.js:
-- Render
-- Heroku
-- Vercel
-- Netlify (with serverless functions)
-- DigitalOcean App Platform
+### GitHub Pages Deployment
+
+The GitHub Pages deployment is automatically updated when changes are pushed to the `main` branch. Visit https://mohansaina.github.io/businesshelp/ to see the frontend demo.
 
 ### Render Deployment
 
-1. Fork this repository to your GitHub account
-2. Create a new Web Service on Render
-3. Connect your forked repository
+1. Go to [Render Dashboard](https://dashboard.render.com/new?repo=https://github.com/Mohansaina/businesshelp)
+2. Connect your GitHub account when prompted
+3. Select your repository
 4. Configure the following environment variables:
-   - `JWT_SECRET` - Your JWT secret key
-   - `EMAIL_USER` - Your Gmail address for sending emails
+   - `JWT_SECRET` - Your JWT secret key (generate a random string)
+   - `EMAIL_USER` - Your Gmail address for sending emails (ruttalamohan23@gmail.com)
    - `EMAIL_PASS` - Your Gmail app password
    - `OPENAI_API_KEY` - Your OpenAI API key (optional)
 5. Set the build command to `npm install`
 6. Set the start command to `npm start`
+7. Click "Create Web Service"
+
+For detailed instructions, see [RENDER-SETUP-GUIDE.md](RENDER-SETUP-GUIDE.md)
 
 ## Environment Variables
 
@@ -80,6 +95,8 @@ EMAIL_USER=your_email@gmail.com
 EMAIL_PASS=your_email_app_password
 OPENAI_API_KEY=your_openai_api_key (optional)
 ```
+
+For Render deployment, configure these as environment variables in the Render dashboard rather than using a .env file.
 
 ## Integration Points
 
