@@ -2,12 +2,6 @@
 
 A micro-SaaS solution for local businesses to manage online reviews and reputation with AI-powered insights.
 
-## Firebase Integration Notice
-
-This version of the application has been updated to use Firebase for authentication and data storage. The original Node.js/SQLite implementation is still available but the recommended approach is to use Firebase for better scalability and real-time features.
-
-Your Firebase project: [thebusinesshelper-baccf](https://console.firebase.google.com/project/thebusinesshelper-baccf/overview)
-
 ## Features
 
 - **Landing Page**: Attractive homepage with signup/login options
@@ -22,97 +16,14 @@ Your Firebase project: [thebusinesshelper-baccf](https://console.firebase.google
 
 ## Technology Stack
 
-### Firebase Implementation (Recommended)
 - **Frontend**: HTML5, CSS3, JavaScript (Vanilla)
-- **Backend**: Firebase Authentication, Firestore, Cloud Functions
-- **Hosting**: Firebase Hosting
-- **Email Service**: Nodemailer with Gmail SMTP
-
-### Original Implementation (Legacy)
-- **Frontend**: HTML5, CSS3, JavaScript
-- **Backend**: Node.js with built-in HTTP server
+- **Backend**: Node.js with Express
 - **Authentication**: JWT with bcrypt password hashing
 - **Database**: SQLite for local data storage
+- **AI Integration**: OpenAI API ready for sentiment analysis and auto-replies
+- **Email Service**: Nodemailer with Gmail SMTP
 
-## Project Structure
-
-```
-.
-├── firebase.json              # Firebase configuration
-├── functions/                 # Cloud Functions
-│   ├── index.js              # Cloud Functions implementation
-│   └── package.json          # Functions dependencies
-├── public/                   # Public assets
-│   ├── index.html            # Landing page
-│   ├── login.html            # Login page
-│   ├── signup.html           # Signup page
-│   ├── dashboard.html        # User dashboard
-│   ├── orders.html           # Order management
-│   ├── admin.html            # Admin dashboard
-│   ├── business.html         # Business setup
-│   ├── reviews.html          # Review management
-│   ├── analytics.html        # Analytics dashboard
-│   ├── settings.html         # Account settings
-│   ├── 404.html              # Error page
-│   ├── css/                  # Stylesheets
-│   │   ├── style.css         # Main styles
-│   │   ├── auth.css          # Authentication styles
-│   │   └── dashboard.css     # Dashboard styles
-│   └── js/                   # JavaScript files
-│       ├── firebase-config.js # Firebase configuration
-│       ├── auth-firebase.js  # Authentication functions
-│       ├── dashboard-firebase.js # Dashboard functions
-│       ├── orders-firebase.js # Order management
-│       ├── admin-firebase.js # Admin functions
-│       ├── main.js           # Landing page scripts
-│       ├── business.js       # Business setup scripts
-│       ├── reviews.js        # Review management scripts
-│       ├── analytics.js      # Analytics scripts
-│       └── settings.js       # Settings scripts
-├── server.js                 # Node.js server (original implementation)
-├── package.json              # Project configuration
-└── README.md                 # This file
-```
-
-## Getting Started (Firebase Implementation)
-
-1. **Install Node.js** (version 14 or higher)
-
-2. **Clone or download this repository**
-
-3. **Install dependencies**:
-   ```bash
-   npm install
-   ```
-
-4. **Set up Firebase**:
-   - Go to your Firebase project: [thebusinesshelper-baccf](https://console.firebase.google.com/project/thebusinesshelper-baccf/overview)
-   - Get your web app configuration from Project Settings
-   - Update `public/js/firebase-config.js` with your Firebase configuration
-   - Enable Authentication (Email/Password, Google, GitHub)
-   - Enable Cloud Firestore
-
-5. **Start the development server**:
-   ```bash
-   npm start
-   ```
-
-6. **Open your browser** and navigate to `http://localhost:3000`
-
-## Easy Setup Scripts
-
-We've provided easy setup scripts for your convenience:
-
-- **Windows PowerShell**: Run `setup-firebase.ps1`
-- **Windows Batch**: Run `setup-firebase.bat`
-
-These scripts will:
-1. Check if Node.js and npm are installed
-2. Install project dependencies
-3. Verify Firebase configuration
-4. Start the development server
-
-## Getting Started (Original Implementation)
+## Getting Started
 
 1. **Install Node.js** (version 14 or higher)
 
@@ -130,35 +41,15 @@ These scripts will:
 
 5. **Open your browser** and navigate to `http://localhost:3000`
 
-## Development (Original Implementation)
+## Development
 
 To run the server in development mode with auto-restart:
 ```bash
 npm run dev
 ```
 
-## Firebase Integration Setup
-
-For the new Firebase integration, please refer to the detailed setup instructions in [FIREBASE-INTEGRATION-GUIDE.md](FIREBASE-INTEGRATION-GUIDE.md).
-
-### Quick Firebase Setup:
-
-1. Go to your Firebase project: [thebusinesshelper-baccf](https://console.firebase.google.com/project/thebusinesshelper-baccf/overview)
-2. Enable Authentication (Email/Password, Google, GitHub)
-3. Enable Cloud Firestore
-4. Enable Cloud Functions
-5. Update `public/js/firebase-config.js` with your Firebase configuration
-6. Deploy with `firebase deploy`
-
 ## Deployment
 
-### Firebase Implementation (Recommended)
-The Firebase version can be deployed with:
-```bash
-firebase deploy
-```
-
-### Original Implementation
 This application can be deployed to any platform that supports Node.js:
 - Render
 - Heroku
@@ -166,11 +57,34 @@ This application can be deployed to any platform that supports Node.js:
 - Netlify (with serverless functions)
 - DigitalOcean App Platform
 
+### Render Deployment
+
+1. Fork this repository to your GitHub account
+2. Create a new Web Service on Render
+3. Connect your forked repository
+4. Configure the following environment variables:
+   - `JWT_SECRET` - Your JWT secret key
+   - `EMAIL_USER` - Your Gmail address for sending emails
+   - `EMAIL_PASS` - Your Gmail app password
+   - `OPENAI_API_KEY` - Your OpenAI API key (optional)
+5. Set the build command to `npm install`
+6. Set the start command to `npm start`
+
+## Environment Variables
+
+Create a `.env` file in the root directory with the following variables:
+
+```
+JWT_SECRET=your_jwt_secret_key
+EMAIL_USER=your_email@gmail.com
+EMAIL_PASS=your_email_app_password
+OPENAI_API_KEY=your_openai_api_key (optional)
+```
+
 ## Integration Points
 
 ### Authentication
 - Ready for Supabase Auth or Qoder Auth integration
-- Firebase Authentication ready (email/password, Google, GitHub)
 - Role-based access control (user/admin)
 
 ### AI Integration
@@ -182,7 +96,6 @@ This application can be deployed to any platform that supports Node.js:
 ### Notifications
 - Gmail API integration ready for email notifications
 - Twilio integration ready for WhatsApp notifications
-- Firebase Cloud Functions with Nodemailer for welcome emails
 
 ### Payments
 - Stripe integration ready for subscription management
@@ -199,8 +112,8 @@ To customize this application for your specific needs:
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License.
 
 ## Support
 
-For support, please open an issue on this repository or contact the development team.
+For support, please open an issue on this repository.
