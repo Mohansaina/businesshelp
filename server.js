@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
+const fs = require('fs');
 const cors = require('cors');
 const { OpenAI } = require('openai');
 const nodemailer = require('nodemailer');
@@ -544,7 +545,27 @@ app.get('/api/dashboard/stats', authenticateToken, (req, res) => {
 
 // Serve frontend routes - this should be the last route
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  // For API routes, return 404 JSON response
+  if (req.path.startsWith('/api/')) {
+    return res.status(404).json({ error: 'API endpoint not found' });
+  }
+  
+  // Special handling for the root path to serve a version without Firebase dependencies
+  if (req.path === '/' || req.path === '/index.html') {
+    return res.sendFile(path.join(__dirname, 'public', 'index-no-firebase.html'));
+  }
+  
+  // For all other routes, serve the requested file or fallback to index.html
+  const filePath = path.join(__dirname, 'public', req.path);
+  fs.access(filePath, fs.constants.F_OK, (err) => {
+    if (err) {
+      // File doesn't exist, serve the Firebase version of index.html
+      res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    } else {
+      // File exists, serve it
+      res.sendFile(filePath);
+    }
+  });
 });
 
 // Start the server
